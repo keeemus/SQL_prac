@@ -14,7 +14,7 @@ FROM 	orders
 ORDER BY orderdate DESC;
 ```
 
-#### 문제3번) employees 테이블을 이용하여, 705 아이디를 가진 직원의 이름, 성과 해당 직원의 태어난 해를 확인해주세요.
+#### 문제3번) employees 테이블을 이용하여 705 아이디를 가진 직원의 이름, 성과 해당 직원의 태어난 해를 확인해주세요.
 ```SQL
 SELECT 	emplastname
 	,empfirstname
@@ -32,7 +32,7 @@ SELECT 	concat(custlastname, ', ', custfirstname) AS full_name
 FROM 	customers;
 ```
 
-#### 문제5번) orders 테이블을 활용하여, 고객번호가 1001 에 해당하는 사람이 employeeid 가 707인 직원으로부터  산 주문의 id 와 주문 날짜를 알려주세요.
+#### 문제5번) orders 테이블을 활용하여 고객번호가 1001 에 해당하는 사람이 employeeid 가 707인 직원으로부터  산 주문의 id 와 주문 날짜를 알려주세요.
 #### 주문일자 빠른순으로 정렬하여 보여주세요.
 ```SQL
 SELECT 	ordernumber
