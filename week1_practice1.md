@@ -77,7 +77,7 @@ SELECT	customer_id
 	,last_name
 	,email
 FROM	customer
-WHERE customer_id % 50 = 0;
+WHERE 	customer_id % 50 = 0;
 
 -- 50으로 나눈 나머지가 0인 것 활용
 ```
@@ -135,7 +135,7 @@ SELECT	*
 FROM 	film
 WHERE 	release_year = '2006'
 AND 	rating = 'G'
-AND		rental_duration = 3;
+AND	rental_duration = 3;
 
 -- WHERE절에 여러 조건 활용하는 방법(AND, OR)
 ```
