@@ -22,7 +22,7 @@ LIMIT 	1;
 -- wildcard를 활용하여 문자열 패턴 파악하는 방법 연습
 -- 순서를 정렬하고 원하는 열만큼만 출력하는 연습
 ```
-[문자열 패턴 파악 참조링크](https://www.ikpil.com/1096)
+문자열 패턴 파악 [참조링크](https://www.ikpil.com/1096)
 
 #### 문제3번) film 테이블을 이용하여 film 테이블의 아이디값이 1~10 사이에 있는 모든 컬럼을 확인해주세요.
 ```SQL
@@ -150,7 +150,7 @@ SELECT	last_name
 FROM 	customer
 WHERE 	first_name LIKE '%John%'
 ```
-[문자열 패턴 찾기 참조링크2](https://dog-developers.tistory.com/136)
+문자열 패턴 파악 [참조링크2](https://dog-developers.tistory.com/136)
 
 ### 문제18번) address 테이블에서 address2 값이 null 값인 row 전체를 확인해주세요.
 ```SQL
