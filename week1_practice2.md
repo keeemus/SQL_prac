@@ -43,7 +43,7 @@ WHERE  	country LIKE 'A%';
 -- 문자열 패턴 파악 문제 -> wildcard 활용
 ```
 
-#### 문제5번) country 테이블을 이용하여, country 이름이 s 로 끝나는 country 를 확인해주세요.
+#### 문제5번) country 테이블을 이용하여 country 이름이 s로 끝나는 country 를 확인해주세요.
 ```SQL
 SELECT	country
 FROM 	country
@@ -95,7 +95,7 @@ FROM 	customer
 WHERE 	name IN ('Maria', 'Lisa', 'Mike');
 ```
 
-#### 문제11번) film 테이블을 이용하여 film의 길이가 100~120에 해당하거나 또는 rental 대여기간이 3~5일에 해당하는 film의 모든 정보를 확인해주세요.
+#### 문제11번) film 테이블을 이용하여 film의 길이가 100\~120에 해당하거나 또는 rental기간이 3\~5일에 해당하는 film의 모든 정보를 확인해주세요.
 ```SQL
 SELECT	*
 FROM 	film
@@ -128,7 +128,7 @@ FROM 	staff
 WHERE   picture IS NOT NULL;
 ```
 
-#### 문제15번) rental 테이블을 이용하여 대여는했으나 아직 반납 기록이 없는 대여 건의 모든 정보를 확인해주세요.
+#### 문제15번) rental 테이블을 이용하여 대여는 했으나 아직 반납 기록이 없는 대여 건의 모든 정보를 확인해주세요.
 ```SQL
 SELECT	*
 FROM 	rental
@@ -143,7 +143,7 @@ FROM 	address
 WHERE 	postal_code IN (NULL, '35200', '17886');
 ```
 
-#### 문제17번) 고객의 성에 John이라는 단어가 들어가는, 고객의 이름과 성을 모두 찾아주세요.
+#### 문제17번) 고객의 성에 John이라는 단어가 들어가는 고객의 이름과 성을 모두 찾아주세요.
 ```SQL
 SELECT	last_name
 	,first_name 
@@ -152,7 +152,7 @@ WHERE 	first_name LIKE '%John%'
 ```
 문자열 패턴 파악 [참조링크2](https://dog-developers.tistory.com/136)
 
-### 문제18번) address 테이블에서 address2 값이 null 값인 row 전체를 확인해주세요.
+#### 문제18번) address 테이블에서 address2 값이 null 값인 row 전체를 확인해주세요.
 ```SQL
 SELECT	*
 FROM 	address
