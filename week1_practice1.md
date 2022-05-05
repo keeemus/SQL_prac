@@ -67,7 +67,7 @@ WHERE 	date(return_date) - date(rental_date) >= 9;
 -- 주어진 날짜 필드의 속성을 date로 변환 후 날짜 차이를 계산해야 비교 가능
 -- date - date = integer
 ```
-* datetime 함수 관련 [참조링크](https://runebook.dev/ko/docs/postgresql/functions-datetime)
+* datetime 함수 관련 [참조링크(PostgreSQL 공식문서)](https://runebook.dev/ko/docs/postgresql/functions-datetime)
 
 #### 문제8번) 고객의 id가 50,100,150..등 50번의 배수에 해당하는 고객들에 대해서 회원 가입 감사 이벤트를 진행하려고합니다.
 #### 고객 아이디가 50번 배수인 아이디와 고객의 이름(성, 이름)과 이메일에 대해서 확인해주세요.
@@ -103,7 +103,7 @@ FROM 	actor;
 -- 문자열 연결 시 ||와 concat 함수 사용하는 방법 활용
 -- text||text -> text
 ```
-* 문자열 연결 함수 관련 [참조링크](https://runebook.dev/ko/docs/postgresql/functions-string#concat)
+* 문자열 연결 함수 관련 [참조링크(PostgreSQL 공식문서)](https://runebook.dev/ko/docs/postgresql/functions-string#concat)
 
 #### 문제12번) 고객 중에서, active 상태가 0인 즉 현재 사용하지 않고 있는 고객의 수를 알려주세요.
 ```SQL
