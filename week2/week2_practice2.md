@@ -100,7 +100,7 @@ FROM   customer c
                    LIMIT  1) p
                ON c.customer_id = p.customer_id;
 
--- 서브쿼리 없이 조인만 사용해서 해결하려 했으나 gourp by에서 제한
+-- 서브쿼리 없이 조인만 사용해서 해결하려 했으나 group by에서 제한
 ```
 
 #### 문제8번) rental 테이블을 기준으로 2005년 5월26일에 대여를 기록한 고객 중 하루에 2번 이상 대여를 한 고객의 ID 값을 확인해주세요.
