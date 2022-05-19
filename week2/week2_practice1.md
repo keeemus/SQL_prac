@@ -100,7 +100,6 @@ WHERE   s.first_name = 'Jon' AND s.last_name = 'Stephens';
 ```
 
 #### 문제7번) 배우가 출연하지 않는 영화의 film_id, title, release_year, rental_rate, length를 알려주세요.
-* 문제 이해가 안됨 .. 
 ```SQL
 SELECT 	f1.film_id
 	,f1.title 
