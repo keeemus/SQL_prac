@@ -81,4 +81,74 @@ FROM customer_stats
 GROUP BY recency, frequency
 ```
 
+Q. orders 테이블 안에 몇 일 치의 데이터가 들어있나요? order_purchase_timestamp 컬럼을 기준으로 데이터의 시작 시점과 끝 시점을 알려주세요.
+```SQL
+-- 내 답변
+SELECT COUNT(order_purchase_timestamp) as cnt_date
+     , MIN(order_purchase_timestamp) as start_date
+     , MAX(order_purchase_timestamp) as last_date
+from olist_orders_dataset
 
+/*
+총 99,441 개
+시작 시점 : 2016-09-04 21:15:19
+끝 시점 : 2018-10-17 17:30:18
+*/
+```
+Q. 고객들은 어떤 주(state)에 살고 있나요? customers 테이블 안에 customer_state 컬럼을 참고하여 olist 고객들이 어떤 주에 살고 있는지 알아봅시다. 이 정보를 주문 데이터(orders)와 연결하려면 어떤 컬럼을 사용해야 하나요?
+
+```SQL
+-- 내 답변
+SELECT DISTINCT customer_state
+FROM olist_customers_dataset
+
+/*
+총 27개의 주에 거주
+customer_id 컬럼 사용
+*/
+```
+
+Q. 고객들의 결제 데이터는 어떤 테이블에 있나요? 주문 하나에 결제 데이터가 하나 붙어있는 1:1 관계인가요, 아니면 주문 하나에 결제 데이터가 여러 개 있을 수 있는 1:N 관계인가요? 결제 금액은 어떤 컬럼을 보고 알 수 있나요? orders 테이블과 결제 데이터는 어떤 컬럼을 기준으로 연결할 수 있나요?
+
+```SQL
+-- 내 답변
+SELECT order_id
+     , COUNT(*) AS cnt_orders
+FROM olist_order_payments_dataset
+GROUP BY order_id
+ORDER BY cnt_orders DESC
+
+/*
+1:N 관계이며 결제 금액은 payment_value 컬럼을 보고 파악
+order_id 컬럼 사용
+*/
+```
+
+Q. orders, customers, payments 테이블을 사용하여 2017년에 매출이 많이 나오는 주(customer_state)가 어디인지 알아봅시다. 2017년 매출 Top 3 주를 꼽아주세요.
+```SQL
+/*
+1. olist_orders_dataset에서 날짜(order_purchase_timestamp) 확인 가능
+2. olist_customers_dataset에서 주(state) 확인 가능
+3. olist_order_payments_dataset에서 매출(payment_value) 확인 가능
+4. 1,2테이블 join시 customer_id 활용
+5. 1,3테이블 join시 order_id 활용
+*/
+
+-- 내 답변
+SELECT c.customer_state AS state
+     , SUM(p.payment_value) AS total_sales
+FROM olist_orders_dataset AS o
+     INNER JOIN olist_customers_dataset AS c ON o.customer_id = c.customer_id
+     INNER JOIN olist_order_payments_dataset AS p ON o.order_id = p.order_id
+WHERE YEAR(o.order_purchase_timestamp) = 2017
+GROUP BY c.customer_state
+ORDER BY total_sales DESC
+LIMIT 3
+
+/*
+2017년 매출 TOP 3
+1. SP
+2. RJ
+3. MG
+*/
+```
