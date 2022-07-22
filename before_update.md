@@ -152,3 +152,42 @@ LIMIT 3
 3. MG
 */
 ```
+
+Q. Q. 2017년 5월 1일부터 2017년 11월 19일까지 주(state)별 일일 매출액을 알고 싶습니다. **2017년 매출 Top 3 지역이었던 ‘SP’, ‘RJ’, ‘MG’ 주 각각의 일일 매출액과 일일 전체 매출액에서 차지하는 비중을 계산해주세요**. orders, customers, payments 테이블을 이용하고, 쿼리 만으로 계산이 어렵다면 구글 스프레드 시트나 엑셀을 활용하는 것도 좋은 방법입니다.
+
+```SQL
+-- 내 답변
+
+SELECT c.customer_state AS state
+    , DATE(o.order_purchase_timestamp) AS date
+    , ROUND(SUM(p.payment_value), 2) AS revenue_daily
+FROM olist_orders_dataset AS o
+    INNER JOIN olist_customers_dataset AS c ON o.customer_id = c.customer_id
+    INNER JOIN olist_order_payments_dataset AS p ON o.order_id = p.order_id
+WHERE o.order_purchase_timestamp BETWEEN '2017-05-01 00:00:00' AND '2017-11-19 23:59:59'
+AND c.customer_state IN ('SP', 'RJ', 'MG')
+GROUP BY c.customer_state
+      , date
+ORDER BY date
+
+-- 풀이
+SELECT 
+    -- c.customer_state AS state
+      DATE(o.order_purchase_timestamp) AS date
+    , ROUND(SUM(CASE WHEN c.customer_state = 'SP' THEN p.payment_value ELSE 0 END), 2) AS SP_revenue_daily
+    , ROUND(SUM(CASE WHEN c.customer_state = 'RJ' THEN p.payment_value ELSE 0 END), 2) AS RJ_revenue_daily
+    , ROUND(SUM(CASE WHEN c.customer_state = 'MG' THEN p.payment_value ELSE 0 END), 2) AS MG_revenue_daily
+    , ROUND(SUM(p.payment_value), 2) AS revenue_total
+    , ROUND(SUM(CASE WHEN c.customer_state = 'SP' THEN p.payment_value ELSE 0 END) / SUM(p.payment_value) * 100, 2) AS SP_revenue_pct
+    , ROUND(SUM(CASE WHEN c.customer_state = 'RJ' THEN p.payment_value ELSE 0 END) / SUM(p.payment_value) * 100, 2) AS RJ_revenue_pct
+    , ROUND(SUM(CASE WHEN c.customer_state = 'MG' THEN p.payment_value ELSE 0 END) / SUM(p.payment_value) * 100, 2) AS MG_revenue_pct
+FROM olist_orders_dataset AS o
+    INNER JOIN olist_customers_dataset AS c ON o.customer_id = c.customer_id
+    INNER JOIN olist_order_payments_dataset AS p ON o.order_id = p.order_id
+WHERE o.order_purchase_timestamp BETWEEN '2017-05-01 00:00:00' AND '2017-11-19 23:59:59'
+-- AND c.customer_state IN ('SP', 'RJ', 'MG')
+GROUP BY 
+        -- c.customer_state
+        date
+ORDER BY date
+```
